@@ -49,7 +49,7 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      height: 80vh;
+      height: 60vh;
       flex-direction: column;
       text-align: center;
     }
@@ -65,56 +65,67 @@
       color: #cccccc;
     }
 
-    #about {
-      background-color: #1a1a1a;
+    section {
       padding: 60px 20px;
       text-align: center;
     }
 
-    #about h2 {
-      font-size: 2em;
-      color: #00ffff;
-      margin-bottom: 20px;
-    }
-
-    #about p {
-      max-width: 700px;
-      margin: 0 auto;
-      font-size: 1.1em;
-      color: #cccccc;
-      line-height: 1.6;
+    #about {
+      background-color: #1a1a1a;
     }
 
     #contact {
       background-color: #1f1f1f;
-      padding: 60px 20px;
-      text-align: center;
     }
 
-    #contact h2 {
+    h2 {
       font-size: 2em;
       color: #00ffff;
       margin-bottom: 20px;
     }
 
-    #contact p {
+    p, a {
       font-size: 1.1em;
       color: #cccccc;
       margin: 10px 0;
-    }
-
-    #contact a {
-      color: #00ffff;
       text-decoration: none;
-      font-weight: bold;
     }
 
-    #contact a:hover {
-      text-decoration: underline;
+    a:hover {
+      color: #00ffff;
+    }
+
+    form {
+      margin-top: 30px;
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      max-width: 400px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    input, button {
+      padding: 10px;
+      font-size: 1em;
+      border-radius: 8px;
+      border: none;
+    }
+
+    button {
+      background-color: #00ffff;
+      color: #121212;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #00cccc;
     }
   </style>
 </head>
 <body>
+
   <nav>
     <h1>100% AI TRADING SITE</h1>
     <ul>
@@ -124,13 +135,11 @@
     </ul>
   </nav>
 
-  <!-- Home Section -->
   <div class="content">
-    <h2>Welcome to AI Trading Site</h2>
-    <p>The best AI trading site — smart, fast, and automated success 🤖📈</p>
+    <h2>Life is Amazing with AI</h2>
+    <p>Welcome to AI Trading Site — the best AI trading site</p>
   </div>
 
-  <!-- About Section -->
   <section id="about">
     <h2>About This Site</h2>
     <p>
@@ -138,12 +147,38 @@
     </p>
   </section>
 
-  <!-- Contact Section -->
   <section id="contact">
     <h2>Contact</h2>
     <p>Email: <a href="mailto:calebkibetmutai@gmail.com">calebkibetmutai@gmail.com</a></p>
     <p>Phone: <a href="tel:+254728543803">0728543803</a></p>
   </section>
+
+  <section id="payment">
+    <h2>Make a Payment</h2>
+    <form id="paymentForm">
+      <input type="text" id="name" placeholder="Your Name" required />
+      <input type="tel" id="phone" placeholder="2547XXXXXXXX" required />
+      <input type="number" id="amount" placeholder="Amount" value="1290" required />
+      <button type="submit">Pay Now</button>
+    </form>
+  </section>
+
+  <script>
+    document.getElementById("paymentForm").addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const phone = document.getElementById("phone").value;
+      const amount = document.getElementById("amount").value;
+
+      const res = await fetch("https://your-backend-url.onrender.com/stkpush", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ phone, amount }),
+      });
+
+      const message = await res.text();
+      alert(message);
+    });
+  </script>
+
 </body>
 </html>
-
